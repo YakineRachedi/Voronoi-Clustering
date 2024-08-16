@@ -43,3 +43,13 @@ vector<int> Voronoi_classifier::cluster_sizes() const{
 void Voronoi_classifier::clear_clusters(){
     for_each(clusters.begin(), clusters.end(), [](Cluster & c) { c.points.clear(); });
 }
+
+void Voronoi_classifier::classify(std::istream & data_points, int nb_of_points){
+    Point2D current_point;
+    int i = 0;
+    while(i < nb_of_points){
+        data_points >> current_point.x >> current_point.y;
+        add_point(current_point);
+        i++;
+    }
+}

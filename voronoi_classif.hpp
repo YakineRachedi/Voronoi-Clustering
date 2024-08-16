@@ -40,6 +40,7 @@ class Voronoi_classifier {
 		friend std::ostream & operator << (std::ostream &,const Voronoi_classifier &);
 		std::vector<int> cluster_sizes() const;
 		void clear_clusters();
+		void classify(std::istream & data_points, int nb_of_points);
 		
 };
 
