@@ -4,6 +4,7 @@
 #include <iostream>
 #include <set>
 #include <vector>
+#include <fstream>
 
 // to describe the points in R^2
 struct Point2D {
@@ -35,12 +36,11 @@ class Voronoi_classifier {
         Voronoi_classifier(const std::vector<Point2D> & initial_centers);
 		int nb_of_clusters() const {return this->clusters.size();}
 		int nb_of_data_points() const {return this-> nb_points;}			
+		void add_point(Point2D);
+		friend std::ostream & operator << (std::ostream &,const Voronoi_classifier &);
+		std::vector<int> cluster_sizes() const;
+		void clear_clusters();
+		
 };
-
-Voronoi_classifier::Voronoi_classifier(const std::vector<Point2D> & initial_centers) : clusters(initial_centers.size()), nb_points(0) {
-			for(int i = 0; i < initial_centers.size(); i++){
-				clusters[i].center = initial_centers[i];
-			}
-		}
 
 #endif
