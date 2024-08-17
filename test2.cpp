@@ -1,6 +1,5 @@
 #include "voronoi_classif.hpp"
-//#include "voronoi_classif.cpp"
-#include "voronoi_classif_without_algorithm_library.cpp"
+#include "voronoi_classif.cpp"
 #include <fstream>
 
 using namespace std;
@@ -26,6 +25,19 @@ int main(){
     }
     cout << "\n";
 
+    Data.add_center(Point2D{0,-1});
+    cout << "Clusters size after adding new center : ";
+    for(auto & nb_pts : Data.cluster_sizes()) {
+        cout << nb_pts << " ";
+    }
+    cout << "\n";
 
+    ofstream output("clusters_rep.dat");
+    Data.print_color(output);
+    output.close();
+
+    Point2D new_point = {-7,7};
+    Data += new_point;
+    cout << "After adding point with += " << Data << "\n";
     return 0;
 }

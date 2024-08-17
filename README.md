@@ -36,4 +36,23 @@ Suppose we have already classified a set $P$ of $N$ points around $K$ centers $(
   - Replace $P_k$ with $P'_k$.
 - Finally, the cluster $P_K$ associated with the new point $c_K = c'$ is given by the set $S$.
 
-The method `int Voronoi_classifier::add_center(Point2D new_center);` adds a new cluster at the end of the list of clusters, with the center $c'$ given by `new_center`, and updates the clusters according to the above algorithm.
+The method `int Voronoi_classifier::add_center(Point2D new_center);` adds a new cluster at the end of the list of clusters, with the center $c'$ given by `new_center`, and updates the clusters according to the above algorithm. The size of the newly formed cluster will be returned.
+
+### Simple Graphical Representation of Clusters with Matplotlib (Python) :
+
+We want to write all the points (both centers and data points) to a file in the following format:
+
+x y index
+
+x' y' index '
+
+....
+
+
+where `x` and `y` are the coordinates of the point, and `index` is an integer that equals `-1` if the point is a center, or `i` if the point belongs to the `i`-th cluster.
+
+The method `void Voronoi_classifier::print(std::ostream &) const` handles writing this format to a file.
+
+The next step is to visualize the clusters and centers using Python’s `matplotlib`. After reading the file containing the points and their indices, we can plot them where different clusters have different colors and centers are distinctly marked.
+
+At the end, I added a method `+=` that performs the same operation as `add_point(p)` with the new syntax: `VC += p;`

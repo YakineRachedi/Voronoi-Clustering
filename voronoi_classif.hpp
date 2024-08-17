@@ -33,15 +33,22 @@ class Voronoi_classifier {
 		(3) nb_points is the total number of points, i.e., the sum of the sizes of the clusters.
 		*/
 	public:
+		Voronoi_classifier(): clusters(), nb_points() {}
+		Voronoi_classifier(std::istream & input_centers);
         Voronoi_classifier(const std::vector<Point2D> & initial_centers);
 		int nb_of_clusters() const {return this->clusters.size();}
 		int nb_of_data_points() const {return this-> nb_points;}			
 		void add_point(Point2D);
-		friend std::ostream & operator << (std::ostream &,const Voronoi_classifier &);
 		std::vector<int> cluster_sizes() const;
-		void clear_clusters();
 		void classify(std::istream & data_points, int nb_of_points);
 		std::vector<double> mean_distance_square() const;
+		int add_center(Point2D new_center);
+		void print_color(std::ostream & output) const;
+		void clear_clusters();
+
+		// External operators :
+		friend std::ostream & operator << (std::ostream &,const Voronoi_classifier &);
+		void operator += (Point2D);
 };
 
 #endif
