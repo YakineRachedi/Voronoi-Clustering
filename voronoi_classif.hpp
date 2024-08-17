@@ -41,7 +41,7 @@ class Voronoi_classifier {
 		std::vector<int> cluster_sizes() const;
 		void clear_clusters();
 		void classify(std::istream & data_points, int nb_of_points);
-		
+		std::vector<double> mean_distance_square() const;
 };
 
 #endif

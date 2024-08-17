@@ -1,5 +1,6 @@
 #include "voronoi_classif.hpp"
 #include <algorithm>
+#include <numeric>
 using namespace std;
 
 Voronoi_classifier::Voronoi_classifier(const vector<Point2D> & initial_centers) : clusters(initial_centers.size()), nb_points(0) {
@@ -52,4 +53,12 @@ void Voronoi_classifier::classify(std::istream & data_points, int nb_of_points){
         add_point(current_point);
         i++;
     }
+}
+
+vector<double> Voronoi_classifier::mean_distance_square() const {
+    vector<double> result(clusters.size());
+    transform(clusters.begin(),clusters.end(),result.begin(),
+        [](const Cluster & c) {return accumulate(c.points.begin(),c.points.end(),0.,
+        [c](double s,const Point2D & p) {return s + c.center.dist_2(p);}) / c.points.size()  ;});
+    return result;
 }

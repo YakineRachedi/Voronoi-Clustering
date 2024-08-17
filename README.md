@@ -16,3 +16,24 @@ $x_{3}$  $y_{3}$
 ....
 
 where the $x_i$ and $y_i$ are real numbers corresponding to the coordinates of a point in $\mathbb{R}^2$.
+
+The `mean_distance_square` method returns a vector containing, for each cluster, the mean squared distance of the points to the center of the cluster. For each $0 \leq k < K$, the result vector contains:
+
+$$
+v_k = \frac{1}{|P_k|} \sum_{x \in P_k} d(c_k, x)^2
+$$
+
+where $d(c_k, x)$ represents the distance between the center $c_k$ and point $x$ in the cluster $P_k$.
+
+### Adding a New Center
+
+Suppose we have already classified a set $P$ of $N$ points around $K$ centers $(c_k)_{0 \leq k < K}$ by constructing the $K$ clusters $(P_k)_{0 \leq k < K}$. We then decide to insert a new center $c'$ and move from $K$ centers to $K + 1$ centers, with $c_K = c'$. It is not necessary to recompute everything; we can simply traverse each existing cluster and move the relevant points to the new cluster according to the following algorithm:
+
+- Introduce an empty set $S$ (the future cluster associated with $c'$).
+- For each integer $0 \leq k < K$:
+  - Introduce an empty set $P'_k$.
+  - Traverse all elements of $P_k$ and, for each point $p$, add it to $S$ if $d(c', p) < d(c_k, p)$, otherwise add it to $P'_k$.
+  - Replace $P_k$ with $P'_k$.
+- Finally, the cluster $P_K$ associated with the new point $c_K = c'$ is given by the set $S$.
+
+The method `int Voronoi_classifier::add_center(Point2D new_center);` adds a new cluster at the end of the list of clusters, with the center $c'$ given by `new_center`, and updates the clusters according to the above algorithm.
