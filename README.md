@@ -56,3 +56,9 @@ The method `void Voronoi_classifier::print(std::ostream &) const` handles writin
 The next step is to visualize the clusters and centers using Python’s `matplotlib`. After reading the file containing the points and their indices, we can plot them where different clusters have different colors and centers are distinctly marked.
 
 At the end, I added a method `+=` that performs the same operation as `add_point(p)` with the new syntax: `VC += p;`
+
+## Final Implementation and Compilation Notes
+
+For some fun, I reimplemented a few methods using traditional loops and tests without relying on the `algorithm` library. The file `voronoi_classif_without_algorithm_library.cpp` contains the compilation of these methods.
+
+To compile the file `test2.cpp`, simply comment out one of the `#include` directives for the .cpp files that contain the compilation of the previously implemented methods.

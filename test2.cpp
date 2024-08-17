@@ -1,5 +1,6 @@
 #include "voronoi_classif.hpp"
-#include "voronoi_classif.cpp"
+//#include "voronoi_classif.cpp"
+#include "voronoi_classif_without_algorithm_library.cpp"
 #include <fstream>
 
 using namespace std;
