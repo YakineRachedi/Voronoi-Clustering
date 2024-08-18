@@ -19,11 +19,12 @@ def plot_clusters(file_name):
             if index not in clusters:
                 clusters[index] = []
             clusters[index].append((x, y))
+    plt.figure(figsize=(10, 6))
 
     # Plotting the clusters
     for cluster_index, cluster_points in clusters.items():
         cluster_points = np.array(cluster_points)
-        plt.scatter(cluster_points[:, 0], cluster_points[:, 1]), #label=f'Cluster {cluster_index}')
+        plt.scatter(cluster_points[:, 0], cluster_points[:, 1], label=f'Cluster {cluster_index}')
 
     # Plotting the centers
     centers = np.array(centers)
@@ -35,7 +36,7 @@ def plot_clusters(file_name):
     plt.ylabel('Y')
     plt.title('Cluster Visualization')
     plt.grid(True)
-    plt.savefig("Clusters_Visualization.png")
+    plt.savefig("Clusters_Visualization.png",dpi =300)
     plt.show()
 
 plot_clusters('clusters_rep.dat')
